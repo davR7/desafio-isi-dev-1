@@ -4,6 +4,7 @@ import com.davr7.backend.dtos.PlayerOutputDto;
 import com.davr7.backend.services.PlayerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,5 +23,11 @@ public class PlayerController {
   public ResponseEntity<List<PlayerOutputDto>> listHandle() {
     List<PlayerOutputDto> players = playerService.list();
     return  ResponseEntity.ok().body(players);
+  }
+
+  @GetMapping(value = "/{id}")
+  public ResponseEntity<PlayerOutputDto> getByIdHandle(@PathVariable Long id) {
+    PlayerOutputDto player = playerService.getById(id);
+    return  ResponseEntity.ok().body(player);
   }
 }
