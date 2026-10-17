@@ -2,13 +2,16 @@ package com.davr7.backend.config;
 
 import com.davr7.backend.enums.PlayerCondition;
 import com.davr7.backend.enums.PlayerPosition;
+import com.davr7.backend.models.ClubModel;
 import com.davr7.backend.models.PlayerModel;
+import com.davr7.backend.repositories.ClubRepository;
 import com.davr7.backend.repositories.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 @Configuration
@@ -17,8 +20,16 @@ public class TestConfig implements CommandLineRunner {
   @Autowired
   private PlayerRepository playerRepository;
 
+  @Autowired
+  private ClubRepository clubRepository;
+
   @Override
   public void run(String... args) throws Exception {
+    ClubModel c1 = new ClubModel();
+    c1.setName("Águias FC");
+    c1.setAcronym("AGU");
+    c1.setCash(new BigDecimal("300.00"));
+
     PlayerModel p1 = new PlayerModel();
     p1.setName("Meia Lua");
     p1.setPosition(PlayerPosition.MEI);
@@ -32,7 +43,7 @@ public class TestConfig implements CommandLineRunner {
     p1.setDefending(55);
     p1.setPhysical(64);
     p1.setPotential(86);
-    p1.setClubId(null);
+    p1.setClub(c1);
 
     PlayerModel p2 = new PlayerModel();
     p2.setName("Trovão");
@@ -47,8 +58,9 @@ public class TestConfig implements CommandLineRunner {
     p2.setDefending(35);
     p2.setPhysical(76);
     p2.setPotential(88);
-    p2.setClubId(null);
+    p2.setClub(c1);
 
+    clubRepository.save(c1);
     playerRepository.saveAll(Arrays.asList(p1, p2));
   }
 }
