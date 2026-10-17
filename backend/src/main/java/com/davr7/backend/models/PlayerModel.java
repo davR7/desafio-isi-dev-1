@@ -2,6 +2,7 @@ package com.davr7.backend.models;
 
 import com.davr7.backend.enums.PlayerCondition;
 import com.davr7.backend.enums.PlayerPosition;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -59,9 +60,9 @@ public class PlayerModel {
   @Column(nullable = false)
   private Integer potential;
 
-  @JsonProperty("club_id")
-  @Column(name = "club_id")
-  private Long clubId;
+  @ManyToOne
+  @JoinColumn(name = "club")
+  private ClubModel club;
 
   public Integer getOverall() {
     return 75;
