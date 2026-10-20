@@ -22,7 +22,7 @@ public class PlayerService {
     return players.stream().map(PlayerMapper::toOutputDto).toList();
   }
 
-  public PlayerOutputDto getById(Long id) {
+  public PlayerOutputDto getById(Integer id) {
     PlayerModel player = playerRepository.findById(id).orElseThrow(
         () -> new NotFoundException("Jogador não encontrado."));
 

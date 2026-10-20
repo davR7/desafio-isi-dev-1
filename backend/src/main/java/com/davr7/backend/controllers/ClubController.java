@@ -26,7 +26,7 @@ public class ClubController {
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<ClubOutputDto> getByIdHandle(@PathVariable Long id) {
+  public ResponseEntity<ClubOutputDto> getByIdHandle(@PathVariable Integer id) {
     ClubOutputDto club = clubService.getById(id);
     return  ResponseEntity.ok().body(club);
   }

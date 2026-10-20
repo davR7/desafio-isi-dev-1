@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 public record PlayerSummaryDto(
-    Long id,
+    Integer id,
     String name,
     Integer age,
     PlayerPosition position,

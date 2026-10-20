@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.math.BigDecimal;
 
 public record PlayerOutputDto(
-    Long id,
+    Integer id,
     String name,
     Integer age,
     PlayerPosition position,
@@ -25,5 +25,5 @@ public record PlayerOutputDto(
     @JsonProperty("market_value")
     BigDecimal marketValue,
     @JsonProperty("club_id")
-    Long clubId
+    Integer clubId
 ) {}

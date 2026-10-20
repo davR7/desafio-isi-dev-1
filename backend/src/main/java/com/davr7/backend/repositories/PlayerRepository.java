@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<PlayerModel, Long> {
+public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
   Optional<PlayerModel> findByName(String name);
 }

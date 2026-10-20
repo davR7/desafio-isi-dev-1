@@ -22,7 +22,7 @@ public class ClubService {
     return clubs.stream().map(ClubMapper::toOutputDto).toList();
   }
 
-  public ClubOutputDto getById(Long id) {
+  public ClubOutputDto getById(Integer id) {
     ClubModel club = clubRepository.findById(id).orElseThrow(
         () -> new NotFoundException("Clube não encontrado."));
 

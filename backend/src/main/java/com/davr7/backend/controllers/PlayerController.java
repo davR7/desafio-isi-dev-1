@@ -26,7 +26,7 @@ public class PlayerController {
   }
 
   @GetMapping(value = "/{id}")
-  public ResponseEntity<PlayerOutputDto> getByIdHandle(@PathVariable Long id) {
+  public ResponseEntity<PlayerOutputDto> getByIdHandle(@PathVariable Integer id) {
     PlayerOutputDto player = playerService.getById(id);
     return  ResponseEntity.ok().body(player);
   }
