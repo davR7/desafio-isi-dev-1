@@ -1,12 +1,11 @@
 package com.davr7.backend.controllers;
 
+import com.davr7.backend.dtos.PlayerInputDto;
 import com.davr7.backend.dtos.PlayerOutputDto;
 import com.davr7.backend.services.PlayerService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +28,11 @@ public class PlayerController {
   public ResponseEntity<PlayerOutputDto> getByIdHandle(@PathVariable Integer id) {
     PlayerOutputDto player = playerService.getById(id);
     return  ResponseEntity.ok().body(player);
+  }
+
+  @PostMapping
+  public ResponseEntity<PlayerOutputDto> createHandle(@RequestBody PlayerInputDto input) {
+    PlayerOutputDto player = playerService.create(input);
+    return  ResponseEntity.status(HttpStatus.CREATED).body(player);
   }
 }
