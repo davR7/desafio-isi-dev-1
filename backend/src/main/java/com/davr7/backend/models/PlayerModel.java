@@ -61,7 +61,7 @@ public class PlayerModel {
   private Integer potential;
 
   @ManyToOne
-  @JoinColumn(name = "club")
+  @JoinColumn(name = "club_id")
   private ClubModel club;
 
   public Integer getOverall() {
