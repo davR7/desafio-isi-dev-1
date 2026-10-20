@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.type.descriptor.jdbc.CharJdbcType;
 
 import java.math.BigDecimal;
 import java.time.Instant;
@@ -24,7 +26,8 @@ public class ClubModel {
   @Column(length = 60, nullable = false, unique = true)
   private String name;
 
-  @Column(columnDefinition = "CHAR(3)", nullable = false, unique = true)
+  @JdbcType(CharJdbcType.class)
+  @Column(nullable = false, unique = true)
   private String acronym;
 
   @Column(nullable = false, precision = 10, scale = 2)
