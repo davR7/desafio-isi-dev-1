@@ -1,12 +1,12 @@
 package com.davr7.backend.controllers;
 
+import com.davr7.backend.dtos.ClubInputDto;
 import com.davr7.backend.dtos.ClubOutputDto;
 import com.davr7.backend.services.ClubService;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,5 +29,11 @@ public class ClubController {
   public ResponseEntity<ClubOutputDto> getByIdHandle(@PathVariable Integer id) {
     ClubOutputDto club = clubService.getById(id);
     return  ResponseEntity.ok().body(club);
+  }
+
+  @PostMapping
+  public ResponseEntity<ClubOutputDto> createHandle(@Valid @RequestBody ClubInputDto input) {
+    ClubOutputDto club = clubService.create(input);
+    return  ResponseEntity.status(HttpStatus.CREATED).body(club);
   }
 }
