@@ -50,4 +50,10 @@ public class PlayerController {
     PlayerOutputDto player = playerService.updateCondition(id, input);
     return  ResponseEntity.ok().body(player);
   }
+
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity<PlayerOutputDto> removeHandle(@PathVariable Integer id) {
+    playerService.remove(id);
+    return  ResponseEntity.noContent().build();
+  }
 }
