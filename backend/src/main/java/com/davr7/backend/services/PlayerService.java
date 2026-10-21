@@ -64,4 +64,11 @@ public class PlayerService {
     playerRepository.save(player);
     return PlayerMapper.toOutputDto(player);
   }
+
+  public void remove(Integer id) {
+    PlayerModel player = playerRepository.findById(id).orElseThrow(
+        () -> new NotFoundException("Jogador não encontrado."));
+
+    playerRepository.deleteById(player.getId());
+  }
 }
