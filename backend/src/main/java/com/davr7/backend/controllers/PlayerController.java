@@ -2,6 +2,7 @@ package com.davr7.backend.controllers;
 
 import com.davr7.backend.dtos.PlayerInputDto;
 import com.davr7.backend.dtos.PlayerOutputDto;
+import com.davr7.backend.dtos.UpdatePlayerInputDto;
 import com.davr7.backend.services.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,5 +36,11 @@ public class PlayerController {
   public ResponseEntity<PlayerOutputDto> createHandle(@Validated @RequestBody PlayerInputDto input) {
     PlayerOutputDto player = playerService.create(input);
     return  ResponseEntity.status(HttpStatus.CREATED).body(player);
+  }
+
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<PlayerOutputDto> updateHandle(@PathVariable Integer id, @Validated @RequestBody UpdatePlayerInputDto input) {
+    PlayerOutputDto player = playerService.update(id, input);
+    return  ResponseEntity.ok().body(player);
   }
 }
