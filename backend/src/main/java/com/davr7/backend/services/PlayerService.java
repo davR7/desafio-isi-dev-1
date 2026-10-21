@@ -2,6 +2,7 @@ package com.davr7.backend.services;
 
 import com.davr7.backend.dtos.PlayerInputDto;
 import com.davr7.backend.dtos.PlayerOutputDto;
+import com.davr7.backend.dtos.UpdatePlayerInputDto;
 import com.davr7.backend.mappers.PlayerMapper;
 import com.davr7.backend.models.PlayerModel;
 import com.davr7.backend.repositories.PlayerRepository;
@@ -37,6 +38,19 @@ public class PlayerService {
     }
 
     PlayerModel player = playerRepository.save(PlayerMapper.toDomain(input));
+    return PlayerMapper.toOutputDto(player);
+  }
+
+  public PlayerOutputDto update(Integer id, UpdatePlayerInputDto input) {
+    PlayerModel player = playerRepository.findById(id).orElseThrow(
+        () -> new NotFoundException("Jogador não encontrado."));
+
+    player.setName(input.name());
+    player.setAge(input.age());
+    player.setAgility(input.agility());
+    player.setPosition(input.position());
+
+    playerRepository.save(player);
     return PlayerMapper.toOutputDto(player);
   }
 }
