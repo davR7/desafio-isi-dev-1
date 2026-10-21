@@ -3,6 +3,6 @@ CREATE TABLE clubs (
     name VARCHAR(60) NOT NULL,
     acronym CHAR(3) NOT NULL,
     cash DECIMAL(10, 2) NOT NULL,
-    formation VARCHAR(5) NOT NULL,
+    formation VARCHAR(5) NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
