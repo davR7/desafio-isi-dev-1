@@ -5,6 +5,7 @@ import com.davr7.backend.dtos.PlayerOutputDto;
 import com.davr7.backend.services.PlayerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class PlayerController {
   }
 
   @PostMapping
-  public ResponseEntity<PlayerOutputDto> createHandle(@RequestBody PlayerInputDto input) {
+  public ResponseEntity<PlayerOutputDto> createHandle(@Validated @RequestBody PlayerInputDto input) {
     PlayerOutputDto player = playerService.create(input);
     return  ResponseEntity.status(HttpStatus.CREATED).body(player);
   }
