@@ -2,6 +2,7 @@ package com.davr7.backend.controllers;
 
 import com.davr7.backend.dtos.PlayerInputDto;
 import com.davr7.backend.dtos.PlayerOutputDto;
+import com.davr7.backend.dtos.UpdateConditionPlayerInputDto;
 import com.davr7.backend.dtos.UpdatePlayerInputDto;
 import com.davr7.backend.services.PlayerService;
 import org.springframework.http.HttpStatus;
@@ -41,6 +42,12 @@ public class PlayerController {
   @PutMapping(value = "/{id}")
   public ResponseEntity<PlayerOutputDto> updateHandle(@PathVariable Integer id, @Validated @RequestBody UpdatePlayerInputDto input) {
     PlayerOutputDto player = playerService.update(id, input);
+    return  ResponseEntity.ok().body(player);
+  }
+
+  @PatchMapping(value = "/{id}/condition")
+  public ResponseEntity<PlayerOutputDto> updateConditionHandle(@PathVariable Integer id, @Validated @RequestBody UpdateConditionPlayerInputDto input) {
+    PlayerOutputDto player = playerService.updateCondition(id, input);
     return  ResponseEntity.ok().body(player);
   }
 }
