@@ -2,7 +2,6 @@ package com.davr7.backend.models;
 
 import com.davr7.backend.enums.PlayerCondition;
 import com.davr7.backend.enums.PlayerPosition;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,6 +11,8 @@ import lombok.NoArgsConstructor;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "players")
@@ -67,6 +68,12 @@ public class PlayerModel {
   @ManyToOne
   @JoinColumn(name = "club_id")
   private ClubModel club;
+
+  @OneToMany(mappedBy = "player")
+  private List<ContractModel> contracts = new ArrayList<>();
+
+  @OneToMany(mappedBy = "player")
+  private List<TransactionModel> transactions = new ArrayList<>();
 
   public int getOverall() {
     double result = (pace * position.getPace()
