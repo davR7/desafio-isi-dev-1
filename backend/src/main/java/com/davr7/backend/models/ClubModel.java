@@ -47,6 +47,12 @@ public class ClubModel {
   @OneToMany(mappedBy = "club")
   private List<PlayerModel> players =  new ArrayList<>();
 
+  @OneToMany(mappedBy = "club")
+  private List<ContractModel> contracts = new ArrayList<>();
+
+  @OneToMany(mappedBy = "club")
+  private List<TransactionModel> transactions = new ArrayList<>();
+
   @JsonProperty("created_at")
   @Column(nullable = false, name = "created_at")
   public Instant createdAt;
