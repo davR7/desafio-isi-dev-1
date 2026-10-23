@@ -4,6 +4,7 @@ import com.davr7.backend.dtos.PlayerInputDto;
 import com.davr7.backend.dtos.PlayerOutputDto;
 import com.davr7.backend.dtos.PlayerSummaryDto;
 import com.davr7.backend.enums.PlayerCondition;
+import com.davr7.backend.models.ClubModel;
 import com.davr7.backend.models.PlayerModel;
 
 public class PlayerMapper {
@@ -26,6 +27,7 @@ public class PlayerMapper {
 
   public static PlayerOutputDto toOutputDto(PlayerModel player) {
     Integer clubId = player.getClub() != null ? player.getClub().getId() : null;
+    String clubName = player.getClub() != null ? player.getClub().getName() : null;
 
     return new PlayerOutputDto(
         player.getId(),
@@ -44,7 +46,8 @@ public class PlayerMapper {
         player.getOverall(),
         player.getBaseValue(),
         player.getMarketValue(),
-        clubId
+        clubId,
+        clubName
     );
   }
 

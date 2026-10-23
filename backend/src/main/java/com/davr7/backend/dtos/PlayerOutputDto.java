@@ -25,5 +25,7 @@ public record PlayerOutputDto(
     @JsonProperty("market_value")
     BigDecimal marketValue,
     @JsonProperty("club_id")
-    Integer clubId
+    Integer clubId,
+    @JsonProperty("club_name")
+    String clubName
 ) {}
