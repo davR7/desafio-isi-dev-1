@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PlayerRepository extends JpaRepository<PlayerModel, Integer> {
   Optional<PlayerModel> findByName(String name);
+  Integer countByClubId(Integer clubId);
 }
