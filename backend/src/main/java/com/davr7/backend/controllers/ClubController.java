@@ -2,6 +2,7 @@ package com.davr7.backend.controllers;
 
 import com.davr7.backend.dtos.ClubInputDto;
 import com.davr7.backend.dtos.ClubOutputDto;
+import com.davr7.backend.dtos.ClubSummaryDto;
 import com.davr7.backend.services.ClubService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,8 @@ public class ClubController {
   }
 
   @GetMapping
-  public ResponseEntity<List<ClubOutputDto>> listHandle() {
-    List<ClubOutputDto> clubs = clubService.list();
+  public ResponseEntity<List<ClubSummaryDto>> listHandle() {
+    List<ClubSummaryDto> clubs = clubService.list();
     return  ResponseEntity.ok().body(clubs);
   }
 
