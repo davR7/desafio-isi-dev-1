@@ -2,6 +2,7 @@ package com.davr7.backend.services;
 
 import com.davr7.backend.dtos.ClubInputDto;
 import com.davr7.backend.dtos.ClubOutputDto;
+import com.davr7.backend.dtos.ClubSummaryDto;
 import com.davr7.backend.mappers.ClubMapper;
 import com.davr7.backend.models.ClubModel;
 import com.davr7.backend.repositories.ClubRepository;
@@ -20,9 +21,9 @@ public class ClubService {
     this.clubRepository = clubRepository;
   }
 
-  public List<ClubOutputDto> list() {
+  public List<ClubSummaryDto> list() {
     List<ClubModel> clubs = clubRepository.findAll();
-    return clubs.stream().map(ClubMapper::toOutputDto).toList();
+    return clubs.stream().map(ClubMapper::toSummaryDto).toList();
   }
 
   public ClubOutputDto getById(Integer id) {
