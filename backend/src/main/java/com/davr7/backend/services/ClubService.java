@@ -22,6 +22,7 @@ public class ClubService {
     this.clubRepository = clubRepository;
   }
 
+  @Transactional(readOnly = true)
   public List<ClubSummaryDto> list() {
     List<ClubModel> clubs = clubRepository.findAll();
     return clubs.stream().map(ClubMapper::toSummaryDto).toList();
