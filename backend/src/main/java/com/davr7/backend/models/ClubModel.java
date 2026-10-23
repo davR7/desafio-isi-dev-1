@@ -9,6 +9,7 @@ import org.hibernate.annotations.JdbcType;
 import org.hibernate.type.descriptor.jdbc.CharJdbcType;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,12 +37,17 @@ public class ClubModel {
   @Column(length = 5)
   private String formation;
 
+  @Transient
   public BigDecimal getSquadValue() {
-    return  new BigDecimal("0.00");
+    return players.stream()
+        .map(PlayerModel::getMarketValue)
+        .reduce(BigDecimal.ZERO, BigDecimal::add)
+        .setScale(2, RoundingMode.HALF_UP);
   }
 
+  @Transient
   public BigDecimal getNetWorth() {
-    return  new BigDecimal("300.00");
+    return cash.add(getSquadValue());
   }
 
   @OneToMany(mappedBy = "club")
