@@ -1,6 +1,7 @@
 package com.davr7.backend.mappers;
 
 import com.davr7.backend.dtos.ClubOutputDto;
+import com.davr7.backend.dtos.ClubSummaryDto;
 import com.davr7.backend.dtos.PlayerSummaryDto;
 import com.davr7.backend.models.ClubModel;
 
@@ -19,6 +20,18 @@ public class ClubMapper {
         club.getSquadValue(),
         club.getNetWorth(),
         players
+    );
+  }
+
+  public static ClubSummaryDto toSummaryDto(ClubModel club) {
+
+    return new ClubSummaryDto(
+        club.getId(),
+        club.getName(),
+        club.getAcronym(),
+        club.getCash(),
+        club.getSquadValue(),
+        club.getNetWorth()
     );
   }
 }
