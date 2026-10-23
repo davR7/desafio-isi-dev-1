@@ -1,10 +1,8 @@
 package com.davr7.backend.controllers;
 
-import com.davr7.backend.dtos.PlayerInputDto;
-import com.davr7.backend.dtos.PlayerOutputDto;
-import com.davr7.backend.dtos.UpdateConditionPlayerInputDto;
-import com.davr7.backend.dtos.UpdatePlayerInputDto;
+import com.davr7.backend.dtos.*;
 import com.davr7.backend.services.PlayerService;
+import com.davr7.backend.services.TransactionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,9 +14,12 @@ import java.util.List;
 @RequestMapping("players")
 public class PlayerController {
   private final PlayerService playerService;
+  private final TransactionService transactionService;
 
-  public PlayerController(PlayerService playerService) {
+
+  public PlayerController(PlayerService playerService, TransactionService transactionService) {
     this.playerService = playerService;
+    this.transactionService = transactionService;
   }
 
   @GetMapping
@@ -55,5 +56,11 @@ public class PlayerController {
   public ResponseEntity<PlayerOutputDto> removeHandle(@PathVariable Integer id) {
     playerService.remove(id);
     return  ResponseEntity.noContent().build();
+  }
+
+  @PostMapping(value = "/{id}/buy")
+  public ResponseEntity<TransactionOutputDto> buyHandle(@PathVariable Integer id, @Validated @RequestBody TransactionInputDto input) {
+    TransactionOutputDto transaction = transactionService.buy(id, input);
+    return  ResponseEntity.ok().body(transaction);
   }
 }
