@@ -1,0 +1,17 @@
+FROM node:22-alpine3.24
+
+WORKDIR /temp/react
+
+COPY . .
+
+RUN npm install
+RUN npm run build
+
+RUN mkdir -p /var/www/html
+RUN mv dist/* /var/www/html
+
+VOLUME /var/www/html
+
+WORKDIR /
+
+RUN rm -rf /temp/react
