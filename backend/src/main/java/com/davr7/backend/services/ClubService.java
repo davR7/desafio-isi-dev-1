@@ -9,6 +9,7 @@ import com.davr7.backend.repositories.ClubRepository;
 import com.davr7.backend.services.exceptions.ConflictException;
 import com.davr7.backend.services.exceptions.NotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ClubService {
     return clubs.stream().map(ClubMapper::toSummaryDto).toList();
   }
 
+  @Transactional(readOnly = true)
   public ClubOutputDto getById(Integer id) {
     ClubModel club = clubRepository.findById(id).orElseThrow(
         () -> new NotFoundException("Clube não encontrado."));
