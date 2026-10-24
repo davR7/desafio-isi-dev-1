@@ -63,7 +63,7 @@ Cada aplicação possui suas próprias configurações, dependências e variáve
 | PATCH  | `/players/:id/condition` | Atualiza condição de um jogador especifico |
 | POST   | `/players/:id/buy` | Cria uma jogador |
 
-## 📚 Visão geral do frontend
+### Visão geral do frontend
 
 | Método | Endpoint | Descrição |
 |---|----|---|
@@ -80,7 +80,7 @@ Cada aplicação possui suas próprias configurações, dependências e variáve
 3 - Acesse:
 
    - Frontend: http://localhost
-   - API: http://localhost:8080/api/v1
+   - Backend: http://localhost:8080/api/v1
 
 ---
 
